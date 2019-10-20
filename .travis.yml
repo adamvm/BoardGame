@@ -1,0 +1,18 @@
+dist: xenial
+language: python
+cache: pip
+
+before_install:
+  - pip install --upgrade pip
+install:
+  - pip install codecov
+script:
+  - coverage run -m unittest *.py
+after_success:
+  - codecov
+
+matrix:
+  include:
+    - python: '3.8'
+    - python: '3.7'
+    - python: '3.6'
