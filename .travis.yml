@@ -5,9 +5,10 @@ cache: pip
 before_install:
   - pip install --upgrade pip
 install:
-  - pip install codecov
+  - pip install -r requirements-test.txt
 script:
   - coverage run -m unittest *.py
+  - flake8 .
 after_success:
   - codecov
 
