@@ -21,7 +21,8 @@ class Board(object):
             raise ValueError
 
     def __str__(self):
-        coordinates = " ".join([str(self._position[k]) for k in self._position])
+        coordinates = " ".join([str(self._position[k])
+                                for k in self._position])
         return f"{coordinates} {self._direction}"
 
     def get_state(self) -> str:
@@ -48,7 +49,8 @@ class Board(object):
             self._position = new_position
 
     def is_position_valid(self, new_position: dict) -> bool:
-        return all([new_position[k] in self._dimension[k] for k in new_position])
+        return all([new_position[k] in self._dimension[k]
+                    for k in new_position])
 
 
 class BoardTest(unittest.TestCase):
@@ -61,7 +63,9 @@ class BoardTest(unittest.TestCase):
         self.assertEqual("4 4 S", test_bd.get_state())
 
     def test_board_initial_position_outside_board_should_raise_exception(self):
-        self.assertRaises(ValueError, Board, size=3, position_x=4, position_y=5, direction="S")
+        self.assertRaises(ValueError,
+                          Board, size=3, position_x=4,
+                          position_y=5, direction="S")
 
     def test_command_not_supported_should_raise_exception(self):
         test_bd = Board()
